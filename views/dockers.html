@@ -1,0 +1,48 @@
+{% include "./header.html" %}
+{% include "./nav_bar.html" %}
+<div class="container">
+    <div>
+        {% include "./content_heading.html" %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>CONTAINER ID</th>
+                    <th>IMAGE</th>
+                    <th>COMMAND</th>
+                    <th>CREATED</th>
+                    <th>STATUS</th>
+                    <th>PORTS</th>
+                    <th>NAMES</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for docker in stat %}
+            <tr>
+                <td>{{docker.CONTAINERID}}</td>
+                <td>{{docker.IMAGE}}</td>
+                <td>{{docker.COMMAND}}</td>
+                <td>{{docker.CREATED}}</td>
+                <td>{{docker.STATUS}}</td>
+                <td>{{docker.PORTS}}</td>
+                <td>{{docker.NAMES}}</td>
+                <td class="dropdown">
+                    <a class="dropdown-toggle more" data-toggle="dropdown" data-target="#">
+                        More
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu more-ul">
+                        <li ><a class="more-select">Run</a></li>
+                        <li ><a class="more-select">Restart</a></li>
+                        <li ><a class="more-select">Stop</a></li>
+                        <li class="divider"></li>
+                        <li ><a class="more-remove">Remove</a></li>
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% include "./footer.html" %}

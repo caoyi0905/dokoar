@@ -1,0 +1,115 @@
+body{
+    font-family: "proxima-nova", "proxima nova", "helvetica neue", "helvetica", "arial", sans-serif !important;
+}
+
+a{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/*for cmd*/
+.text{
+    font-family:Consolas;
+}
+.box{
+    width: 80%;margin: auto;
+}
+.res{
+    width: 88%;margin: 0px 0px 10px;height: 300px;resize:none;
+}
+
+/*for table*/
+th,td{
+    text-align: center !important;
+}
+
+/*for nav_bar*/
+.nav_bar a{
+    font-size:18px;color:#666;
+}
+.nav_bar_ul{
+    margin-top: 3%;float: left;
+}
+.docker-img{
+    width: 100px;height: 100px;
+}
+.create-btn{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    padding: 0 1.3rem;
+    margin-top:30px;
+    width: 10%;
+    height:2.6rem;
+    line-height: 2.6rem;
+    float: right;
+    color: white;
+    background: #15CD72;
+    border: 1px solid #15CD72;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9rem;
+    border-radius: 3px;
+}
+.create-btn:hover{
+    color:white !important;
+    background: #0CB863;
+    border: 1px solid #0CB863;
+    text-decoration:none !important;
+}
+.create-btn:focus{
+    box-shadow: 0 0 0 1px white, 0 0 2px 2px #298eea;
+}
+
+/*heading*/
+.heading{
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    color: rgb(68, 68, 68);
+    display: block;
+    font-weight: 300;
+    height: 57px;
+    line-height: 57.6px;
+    margin: 0 auto;
+}
+.search_box{
+    height: 3rem !important;
+    font-size: 17px !important;
+}
+
+/*more tag*/
+.more{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+}
+.more-ul{
+    min-width: 100px !important;
+}
+.more-select{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+}
+.more-select:hover{
+    color: #298eea !important;
+    background: white !important;
+}
+.more-remove{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+    background: white !important;
+    text-decoration: none !important;
+}
+.more-remove:hover{
+    color:red !important;
+}

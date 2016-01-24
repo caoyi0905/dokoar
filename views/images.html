@@ -1,0 +1,33 @@
+{% include "./header.html" %}
+<div class="container">
+    {% include "./nav_bar.html" %}
+    <div>
+        {% include "./content_heading.html" %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>REPOSITORY</th>
+                    <th>TAG</th>
+                    <th>IMAGE ID</th>
+                    <th>CREATED</th>
+                    <th>VIRTUAL SIZE</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for image in stat %}
+            <tr>
+                <td>{{image.REPOSITORY}}</td>
+                <td>{{image.TAG}}</td>
+                <td>{{image.IMAGEID}}</td>
+                <td>{{image.CREATED}}</td>
+                <td>{{image.VIRTUALSIZE}}</td>
+                <td>
+                    <a class="more-remove">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% include "./footer.html" %}

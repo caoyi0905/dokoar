@@ -1,0 +1,16 @@
+<nav class="container">
+    <ul class="nav nav-pills nav_bar_ul">
+        <li>
+            <img class="brand docker-img" src="/img/docker.png" href="#">
+        </li>
+        <li class="nav_bar {% if title=='Index'%}active{% endif %}"><a href="/">Index</a></li>
+        <li class="nav_bar {% if title=='Dockers'%}active{% endif %}"><a href="/dockers">Dockers</a></li>
+        <li class="nav_bar {% if title=='Images'%}active{% endif %}"><a href="/images">Images</a></li>
+        <li class="nav_bar {% if title=='Cmder'%}active{% endif %}"><a href="/cmd">Cmder</a></li>
+    </ul>
+    {%if title=='Dockers' %}
+        {% include "./createDocker.html" %}
+    {%elseif title=='Images' %}
+        {% include "./createImage.html" %}
+    {% endif %}
+</nav>
