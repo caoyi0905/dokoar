@@ -4,12 +4,12 @@
             <img class="brand docker-img" src="/img/docker.png" href="#">
         </li>
         <li class="nav_bar {% if title=='Index'%}active{% endif %}"><a href="/">Index</a></li>
-        <li class="nav_bar {% if title=='Dockers'%}active{% endif %}"><a href="/dockers">Dockers</a></li>
+        <li class="nav_bar {% if title=='Containers'%}active{% endif %}"><a href="/containers">Containers</a></li>
         <li class="nav_bar {% if title=='Images'%}active{% endif %}"><a href="/images">Images</a></li>
         <li class="nav_bar {% if title=='Cmder'%}active{% endif %}"><a href="/cmd">Cmder</a></li>
     </ul>
-    {%if title=='Dockers' %}
-        {% include "./createDocker.html" %}
+    {%if title=='Containers' %}
+        {% include "./createContainer.html" %}
     {%elseif title=='Images' %}
         {% include "./createImage.html" %}
     {% endif %}

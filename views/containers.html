@@ -17,15 +17,15 @@
                 </tr>
             </thead>
             <tbody>
-            {% for docker in stat %}
+            {% for container in stat %}
             <tr>
-                <td>{{docker.CONTAINERID}}</td>
-                <td>{{docker.IMAGE}}</td>
-                <td>{{docker.COMMAND}}</td>
-                <td>{{docker.CREATED}}</td>
-                <td>{{docker.STATUS}}</td>
-                <td>{{docker.PORTS}}</td>
-                <td>{{docker.NAMES}}</td>
+                <td>{{container.CONTAINERID}}</td>
+                <td>{{container.IMAGE}}</td>
+                <td>{{container.COMMAND}}</td>
+                <td>{{container.CREATED}}</td>
+                <td>{{container.STATUS}}</td>
+                <td>{{container.PORTS}}</td>
+                <td>{{container.NAMES}}</td>
                 <td class="dropdown">
                     <a class="dropdown-toggle more" data-toggle="dropdown" data-target="#">
                         More
