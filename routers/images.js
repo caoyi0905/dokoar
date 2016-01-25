@@ -2,15 +2,11 @@ var render=require('../views.js');
 var images=require('../models/images.js');
 
 exports.get = function *(){
-    var stat = yield images.stat();
     this.body = yield render('images',{
-        title   :   'Images',
-        stat    :   stat
+        title   :   'Images'
     });
 }
 
 exports.post = function *() {
-    this.body = yield render('images',{
-        title:'Images'
-    });
+    this.body = yield images.stat();
 }

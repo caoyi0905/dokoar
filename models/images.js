@@ -1,32 +1,25 @@
 var cmd = require('./cmder.js');
+var Docker = require('dockerode-promise');
+var docker = new Docker({socketPath: '/var/run/docker.sock'});
+var others = require('./others.js');
 
-exports.stat=function* (){
-    var msg = yield cmd.run('docker images');
-    msg=msg.stdout.split("\n");
+async function getImagesId(name) {
+    let Images = await docker.listImages({ all: true });
+    let Image = Images.find(function(container) {
+        return Image.Names.includes('/' + name);
+    });
+    return Image && Image.Id;
+}
 
-    if(msg.length==0){
-        return "";
+exports.stat=async function () {
+    let Images = await docker.listImages({ all: false });
+    for(var i=0;i<Images.length;i++){
+        Images[i].Id=Images[i].Id.slice(0,12);
+        var pos=Images[i].RepoTags[0].indexOf(':');
+        Images[i].repository=Images[i].RepoTags[0].slice(0,pos);
+        Images[i].tag=Images[i].RepoTags[0].slice(pos+1);
+        Images[i].Created=others.getLocalTime(Images[i].Created);
+        Images[i].VirtualSize=others.getVirtualSize(Images[i].VirtualSize);
     }
-
-    var stat=[];
-    var titles=['REPOSITORY','TAG','IMAGE ID','CREATED','VIRTUAL SIZE'];
-    var titleStr=msg[0]+'';
-    var titlesPos=[];
-    for(var i=0;i<titles.length;i++){
-        titlesPos.push(titleStr.indexOf(titles[i]));
-    }
-
-    for(var i=1;i<msg.length;i++){//跳过首行标题
-        if(msg[i].length==0){
-            break;
-        }
-        stat.push({
-            'REPOSITORY'    :   msg[i].slice(titlesPos[0],titlesPos[1]).trim(),
-            'TAG'           :   msg[i].slice(titlesPos[1],titlesPos[2]).trim(),
-            'IMAGEID'       :   msg[i].slice(titlesPos[2],titlesPos[3]).trim(),
-            'CREATED'       :   msg[i].slice(titlesPos[3],titlesPos[4]).trim(),
-            'VIRTUALSIZE'   :   msg[i].slice(titlesPos[4]).trim(),
-        });
-    }
-    return stat;
+    return Images;
 };

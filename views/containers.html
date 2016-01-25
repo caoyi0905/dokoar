@@ -1,48 +1,102 @@
 {% include "./header.html" %}
 {% include "./nav_bar.html" %}
-<div class="container">
+<div class="container" ng-controller="containerCtrl">
     <div>
         {% include "./content_heading.html" %}
         <table class="table">
             <thead>
                 <tr>
-                    <th>CONTAINER ID</th>
-                    <th>IMAGE</th>
-                    <th>COMMAND</th>
-                    <th>CREATED</th>
-                    <th>STATUS</th>
-                    <th>PORTS</th>
-                    <th>NAMES</th>
+                    <th ng-click="setSort('Id')">Id</th>
+                    <th ng-click="setSort('Names')">Names</th>
+                    <th ng-click="setSort('Image')">Image</th>
+                    <th ng-click="setSort('Created')">Created</th>
+                    <th ng-click="setSort('Status')" style="min-width: 200px;">Status</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-            {% for container in stat %}
-            <tr>
-                <td>{{container.CONTAINERID}}</td>
-                <td>{{container.IMAGE}}</td>
-                <td>{{container.COMMAND}}</td>
-                <td>{{container.CREATED}}</td>
-                <td>{{container.STATUS}}</td>
-                <td>{{container.PORTS}}</td>
-                <td>{{container.NAMES}}</td>
-                <td class="dropdown">
-                    <a class="dropdown-toggle more" data-toggle="dropdown" data-target="#">
-                        More
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu more-ul">
-                        <li ><a class="more-select">Run</a></li>
-                        <li ><a class="more-select">Restart</a></li>
-                        <li ><a class="more-select">Stop</a></li>
-                        <li class="divider"></li>
-                        <li ><a class="more-remove">Remove</a></li>
-                    </ul>
-                </td>
-            </tr>
-            {% endfor %}
+                <tr ng-repeat="container in filterContainers|orderBy:column:reverse">
+                    <td ng-bind="container.Id"></td>
+                    <td ng-bind="container.Names[0]"></td>
+                    <td ng-bind="container.Image"></td>
+                    <td ng-bind="container.Created"></td>
+                    <td ng-bind="container.Status"></td>
+                    {% include "./dropdown.html" %}
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
+<script src="//cdn.bootcss.com/angular.js/1.4.8/angular.min.js"></script>
+<script>
+    angular.module('myApp',[]).
+    controller('containerCtrl',['$scope','$http','filterFilter',
+        function($scope,$http,filterFilter){
+            $scope.containers=[];
+            $scope.filterContainers=[];
+            var func=function (){
+                $http.post('/containers',{})
+                        .success(function (data,status,headers,config) {
+                            $scope.filterContainers=$scope.containers=data;
+                            $scope.setFilter();
+                        })
+                        .error(function (data,status,headers,config){
+                            $scope.filterContainers=$scope.containers=data;
+                            $scope.setFilter();
+                        });
+            }
+            func();
+            $scope.reverse=true;
+            $scope.column='Id';
+            $scope.setSort=function(column) {
+                $scope.column = column;
+                $scope.reverse = !$scope.reverse;
+            }
+            $scope.filterStr='';
+            $scope.setFilter= function (value) {
+                $scope.filterContainers=
+                        filterFilter($scope.containers,$scope.filterStr);
+            }
+
+
+            $scope.operate=function (opt,Id){
+                console.log(opt,Id)
+                $http.post('/setContainers/',{opt:opt,Id:Id})
+                        .success(function (data,status,headers,config) {
+                            func();
+                        })
+                        .error(function (data,status,headers,config){
+                            func();
+                        });
+            }
+
+            $scope.start=function (Id){
+                $scope.operate('start',Id);
+            }
+
+            $scope.restart=function (Id){
+                $scope.operate('restart',Id);
+            }
+
+            $scope.stop=function (Id){
+                $scope.operate('stop',Id);
+            }
+
+            $scope.pause=function (Id){
+                $scope.operate('pause',Id);
+            }
+
+            $scope.unpause=function (Id){
+                $scope.operate('unpause',Id);
+            }
+
+            $scope.console=function (Id){
+                //TODO
+            }
+
+            $scope.destroy=function (Id){
+                $scope.operate('destroy',Id);
+            }
+        }]);
+</script>
 {% include "./footer.html" %}

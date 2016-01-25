@@ -1,33 +1,48 @@
 {% include "./header.html" %}
-<div class="container">
-    {% include "./nav_bar.html" %}
+{% include "./nav_bar.html" %}
+<div class="container" ng-controller="ImageCtrl">
     <div>
         {% include "./content_heading.html" %}
         <table class="table">
             <thead>
                 <tr>
-                    <th>REPOSITORY</th>
-                    <th>TAG</th>
-                    <th>IMAGE ID</th>
-                    <th>CREATED</th>
-                    <th>VIRTUAL SIZE</th>
+                    <th>repository</th>
+                    <th>tag</th>
+                    <th>Id</th>
+                    <th>Created</th>
+                    <th>VirtualSize</th>
                 </tr>
             </thead>
             <tbody>
-            {% for image in stat %}
-            <tr>
-                <td>{{image.REPOSITORY}}</td>
-                <td>{{image.TAG}}</td>
-                <td>{{image.IMAGEID}}</td>
-                <td>{{image.CREATED}}</td>
-                <td>{{image.VIRTUALSIZE}}</td>
-                <td>
-                    <a class="more-remove">Remove</a>
-                </td>
-            </tr>
-            {% endfor %}
+                <tr ng-repeat="image in images">
+                    <td ng-bind="image.repository"></td>
+                    <td ng-bind="image.tag"></td>
+                    <td ng-bind="image.Id"></td>
+                    <td ng-bind="image.Created"></td>
+                    <td ng-bind="image.VirtualSize"></td>
+                    <td>
+                        <a class="more-remove">Remove</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
+<script src="//cdn.bootcss.com/angular.js/1.4.8/angular.min.js"></script>
+<script>
+    angular.module('myApp',[]).
+    controller('ImageCtrl',['$scope','$http',
+        function($scope,$http){
+            var func=function (){
+                $http.post('/images',{})
+                        .success(function (data,status,headers,config) {
+                            $scope.images=data;
+                        })
+                        .error(function (data,status,headers,config){
+                            $scope.images=data;
+                        });
+            }
+            func();
+        }]);
+</script>
 {% include "./footer.html" %}

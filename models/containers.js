@@ -1,34 +1,23 @@
 var cmd = require('./cmder.js');
+var Docker = require('dockerode-promise');
+var docker = new Docker({socketPath: '/var/run/docker.sock'});
+var others = require('./others.js');
 
-exports.stat=function* (){
-    var msg = yield cmd.run('docker ps -a');
-    msg=msg.stdout.split("\n");
+async function getContainerId(name) {
+    let containers = await docker.listContainers({ all: true });
+    let container = containers.find(function(container) {
+        return container.Names.includes('/' + name);
+    });
+    return container && container.Id;
+}
 
-    if(msg.length==0){
-        return "";
+exports.stat=async function () {
+    let containers=await docker.listContainers({ all: true });
+    for(var i=0;i<containers.length;i++){
+        containers[i].Id=containers[i].Id.slice(0,12);
+        containers[i].Created=others.getLocalTime(containers[i].Created);//BUG
+        if(containers[i].Status.indexOf("Paused")!=-1) containers[i].pause=true;
+        else containers[i].pause=false;
     }
-
-    var stat=[];
-    var titles=['CONTAINER ID','IMAGE','COMMAND','CREATED','STATUS','PORTS','NAMES'];
-    var titleStr=msg[0]+'';
-    var titlesPos=[];
-    for(var i=0;i<titles.length;i++){
-        titlesPos.push(titleStr.indexOf(titles[i]));
-    }
-
-    for(var i=1;i<msg.length;i++){//跳过首行标题
-        if(msg[i].length==0){
-            break;
-        }
-        stat.push({
-            'CONTAINERID'   :   msg[i].slice(titlesPos[0],titlesPos[1]).trim(),
-            'IMAGE'         :   msg[i].slice(titlesPos[1],titlesPos[2]).trim(),
-            'COMMAND'       :   msg[i].slice(titlesPos[2],titlesPos[3]).trim(),
-            'CREATED'       :   msg[i].slice(titlesPos[3],titlesPos[4]).trim(),
-            'STATUS'        :   msg[i].slice(titlesPos[4],titlesPos[5]).trim(),
-            'PORTS'         :   msg[i].slice(titlesPos[5],titlesPos[6]).trim(),
-            'NAMES'         :   msg[i].slice(titlesPos[6]).trim(),
-        });
-    }
-    return stat;
+    return containers;
 };

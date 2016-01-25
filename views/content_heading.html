@@ -1,8 +1,8 @@
-<div style="padding-bottom: 10%">
+<div style="padding-bottom: 6%">
     <div class="text-left" style="float: left">
         <h1 class="heading">{{title}}</h1>
     </div>
     <div class="text-right" style="float: right">
-        <input placeholder="Search By {{title|replace('s','')}} Name" type="text" class="search_box span4">
+        <input placeholder="Search By {{title|replace('s','')}} Name" type="text" class="search_box span4" ng-model="filterStr" ng-change="setFilter()">
     </div>
 </div>
