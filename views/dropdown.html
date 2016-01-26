@@ -4,13 +4,15 @@
         <b class="caret"></b>
     </a>
     <ul class="dropdown-menu more-ul">
-        <li ><a class="more-select" ng-click="start(container.Id)">Start</a></li>
-        <li ><a class="more-select" ng-click="restart(container.Id)">Restart</a></li>
-        <li ><a class="more-select" ng-click="stop(container.Id)">Stop</a></li>
-        <li ><a class="more-select" ng-click="pause(container.Id)" ng-if="!container.pause">Pause</a></li>
-        <li ><a class="more-select" ng-click="unpause(container.Id)" ng-if="container.pause">Unpause</a></li>
+        <li ><a class="more-select" ng-click="send('start',container.Id)" ng-if="container.state.stop">Start</a></li>
+        <li ><a class="more-select" ng-click="send('restart',container.Id)" ng-if="container.state.stop||container.state.paused">Restart</a></li>
+        <li ><a class="more-select" ng-click="send('stop',container.Id)" ng-if="!container.state.stop">Stop</a></li>
+        <li ><a class="more-select" ng-click="send('pause',container.Id)" ng-if="!container.state.paused">Pause</a></li>
+        <li ><a class="more-select" ng-click="send('unpause',container.Id)" ng-if="container.state.paused">Unpause</a></li>
         <li ><a class="more-select" ng-click="console(container.Id)">Console</a></li>
         <li class="divider"></li>
-        <li ><a class="more-remove" ng-click="destroy(container.Id)">Destroy</a></li>
+        <li >
+            <a class="more-remove" class="btn" data-toggle="modal" ng-click="send('destroy',container.Id)">Destroy</a>
+        </li>
     </ul>
 </td>

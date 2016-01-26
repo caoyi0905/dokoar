@@ -39,10 +39,6 @@
                         .success(function (data,status,headers,config) {
                             $scope.filterContainers=$scope.containers=data;
                             $scope.setFilter();
-                        })
-                        .error(function (data,status,headers,config){
-                            $scope.filterContainers=$scope.containers=data;
-                            $scope.setFilter();
                         });
             }
             func();
@@ -58,10 +54,8 @@
                         filterFilter($scope.containers,$scope.filterStr);
             }
 
-
-            $scope.operate=function (opt,Id){
-                console.log(opt,Id)
-                $http.post('/setContainers/',{opt:opt,Id:Id})
+            $scope.send=function (opt,Id){
+                $http.post('/setcontainers/',{opt:opt,Id:Id})
                         .success(function (data,status,headers,config) {
                             func();
                         })
@@ -70,32 +64,8 @@
                         });
             }
 
-            $scope.start=function (Id){
-                $scope.operate('start',Id);
-            }
-
-            $scope.restart=function (Id){
-                $scope.operate('restart',Id);
-            }
-
-            $scope.stop=function (Id){
-                $scope.operate('stop',Id);
-            }
-
-            $scope.pause=function (Id){
-                $scope.operate('pause',Id);
-            }
-
-            $scope.unpause=function (Id){
-                $scope.operate('unpause',Id);
-            }
-
             $scope.console=function (Id){
                 //TODO
-            }
-
-            $scope.destroy=function (Id){
-                $scope.operate('destroy',Id);
             }
         }]);
 </script>

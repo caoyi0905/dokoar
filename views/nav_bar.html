@@ -1,4 +1,12 @@
-<nav class="container">
+{% if title=='Index'%}
+    <nav class="container">
+{% elseif title=='Containers'%}
+    <nav class="container" ng-controller="containerCtrl">
+{% elseif title=='Images'%}
+    <nav class="container" ng-controller="imageCtrl">
+{% elseif title=='Cmder'%}
+    <nav class="container">
+{% endif %}
     <ul class="nav nav-pills nav_bar_ul">
         <li>
             <img class="brand docker-img" src="/img/docker.jpg" href="#">
@@ -9,8 +17,22 @@
         <li class="nav_bar {% if title=='Cmder'%}active{% endif %}"><a href="/cmd">Cmder</a></li>
     </ul>
     {%if title=='Containers' %}
-        {% include "./createContainer.html" %}
+    <a class="create-btn">Create Container</a>
     {%elseif title=='Images' %}
-        {% include "./createImage.html" %}
+    <a class="create-btn" data-toggle="modal" href="#createImage">Create Image</a>
+    <div id="createImage" class="modal hide fade" style="top: 40%;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()">x</button>
+            <h3 id="myModalLabel">Create Image</h3>
+        </div>
+        <div class="modal-body" style="width: 92%;">
+            <p style="margin-top: 2%;">Name</p>
+            <input type="text" style="width: 100%;margin-top: 2%;margin-bottom: 3%;" placeholder="Image name" ng-model="imageName">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="send('create',imageName)">Create</button>
+            <button class="btn" data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
     {% endif %}
 </nav>

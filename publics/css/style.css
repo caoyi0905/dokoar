@@ -1,4 +1,5 @@
 body{
+    font-size: 17px;
     font-family: "proxima-nova", "proxima nova", "helvetica neue", "helvetica", "arial", sans-serif !important;
 }
 
@@ -9,7 +10,7 @@ a{
 }
 
 .container{
-    width: 75% !important;
+    width: 75%;
 }
 
 /*for cmd*/
@@ -24,6 +25,12 @@ a{
 }
 
 /*for table*/
+th{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+}
 th,td{
     max-width: 150px;
     line-height: 30px !important;
@@ -50,7 +57,7 @@ table{
     -ms-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     padding: 0 1.3rem;
-    margin-top:30px;
+    margin-top: 3%;
     width: 12%;
     height:2.6rem;
     line-height: 2.6rem;
@@ -71,6 +78,8 @@ table{
 }
 .create-btn:focus{
     box-shadow: 0 0 0 1px white, 0 0 2px 2px #298eea;
+    color: white;
+    text-decoration: none;
 }
 
 /*heading*/
