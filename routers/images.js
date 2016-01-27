@@ -1,5 +1,5 @@
 var render=require('../views.js');
-var images=require('../models/images.js');
+var image=require('../models/setimage.js');
 
 exports.get = function *(){
     this.body = yield render('images',{
@@ -8,5 +8,5 @@ exports.get = function *(){
 }
 
 exports.post = function *() {
-    this.body = yield images.stat();
+    this.body = yield image.all();
 }

@@ -1,8 +1,8 @@
 {% include "./header.html" %}
-{% include "./nav_bar.html" %}
-<div class="container" ng-controller="containerCtrl">
+{% include "./navBar.html" %}
+<div class="container">
     <div>
-        {% include "./content_heading.html" %}
+        {% include "./contentHeading.html" %}
         <table class="table">
             <thead>
                 <tr>
@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="container in filterContainers|orderBy:column:reverse">
-                    <td ng-bind="container.Id"></td>
+                    <td ><a class="containerId" ng-bind="container.Id" ng-href="/container/{%raw%}{{container.Id}}{%endraw%}"></a></td>
                     <td ng-bind="container.Names[0]"></td>
                     <td ng-bind="container.Image"></td>
                     <td ng-bind="container.Created"></td>
@@ -25,71 +25,10 @@
                 </tr>
             </tbody>
         </table>
-        <div id="myModal" class="modal hide fade" style="top: 40%;">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()">x</button>
-                <h3 id="myModalLabel">{% raw %}{{msgTitle}}{% endraw %}</h3>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to destroy this Container?</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" ng-click="send('destroy',curContainerId)">Remove</button>
-                <button class="btn" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
+        {% include "./removeContainer.html" %}
     </div>
 </div>
 <script src="//cdn.bootcss.com/angular.js/1.4.8/angular.min.js"></script>
-<script>
-    angular.module('myApp',[]).
-    controller('containerCtrl',['$scope','$http','filterFilter',
-        function($scope,$http,filterFilter){
-            $scope.containers=[];
-            $scope.filterContainers=[];
-            var func=function (){
-                $http.post('/containers',{})
-                        .success(function (data,status,headers,config) {
-                            $scope.filterContainers=$scope.containers=data;
-                            $scope.setFilter();
-                        });
-            }
-            func();
-            $scope.reverse=true;
-            $scope.column='Id';
-            $scope.setSort=function(column) {
-                $scope.column = column;
-                $scope.reverse = !$scope.reverse;
-            }
-            $scope.filterStr='';
-            $scope.setFilter= function (value) {
-                $scope.filterContainers=
-                        filterFilter($scope.containers,$scope.filterStr);
-            }
-
-            $scope.send=function (opt,Id){
-                if(opt=='destroy'){
-                    $('#myModal').modal('hide');
-                    $http.post('/setcontainers/',{opt:opt,Id:Id});//TODO DESTROY ERR
-                }else{
-                    $http.post('/setcontainers/',{opt:opt,Id:Id})
-                            .success(function (data,status,headers,config) {
-                                func();
-                            })
-                            .error(function (data,status,headers,config){
-                                func();
-                            });
-                }
-            }
-
-            $scope.removeMsg =function(Id){
-                $scope.msgTitle='Remove Image : '+Id;
-                $scope.curContainerId=Id;
-            }
-
-            $scope.console=function (Id){
-                //TODO
-            }
-        }]);
-</script>
+<script src="/js/containers.service.js"></script>
+<script src="/js/containers.controller.js"></script>
 {% include "./footer.html" %}

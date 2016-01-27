@@ -1,5 +1,5 @@
 var render=require('../views.js');
-var api=require('../models/setimages.js');
+var api=require('../models/setimage.js');
 
 async function success(){
     return '1';

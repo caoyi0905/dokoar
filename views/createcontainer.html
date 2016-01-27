@@ -1,0 +1,22 @@
+{% include "./header.html" %}
+{% include "./navBar.html" %}
+<div class="container">
+    <!--heading-->
+    <div class="text-left" style="padding-bottom: 2%">
+        <h1 class="heading">{{title}}</h1>
+    </div>
+    <!--heading end-->
+    <div style="border: 1px solid #d4d4d5;width: 100%;height: 400px;">
+        <div class="span6">
+            <div class="span6">
+                <label>Image Name</label>
+                <input type="text" class="input" placeholder="Image" ng-model="vm.req.Image">
+            </div>
+            <div class="span6">
+                <label>Command</label>
+                <input type="text" class="input" placeholder="Command" ng-model="vm.req.cmd">
+            </div>
+        </div>
+    </div>
+</div>
+{% include "./footer.html" %}

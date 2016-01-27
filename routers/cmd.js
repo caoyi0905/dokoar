@@ -8,6 +8,6 @@ exports.get = function *(){
 }
 
 exports.post = function *() {
-    var Res=yield cmder.run(this.request.body.cmd);
-    this.body = Res.stderr ||　Res.stdout;
+    //var Res=yield cmder.run(this.request.body.cmd);
+    //this.body = Res.stderr ||　Res.stdout;
 }

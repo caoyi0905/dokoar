@@ -1,5 +1,7 @@
 var Docker = require('dockerode-promise');
 var docker = new Docker({socketPath: '/var/run/docker.sock'});
+var cmd = require('./cmder.js');
+var others = require('./others.js');
 
 exports.stopContainer=async function (Id) {
     try {
@@ -62,3 +64,30 @@ exports.unpauseContainer=async function (Id) {
         console.log('unpauseContainer: done');
     }
 }
+
+exports.getContainerInfo=async function (Id){
+    try {
+        let container = docker.getContainer(Id);
+        let output = await container.inspect();
+        return output;
+    }
+    catch(e) {
+        throw e;
+    }
+    finally {
+        console.log('getContainer: done');
+    }
+}
+
+exports.all=async function () {
+    let containers=await docker.listContainers({ all: true });
+    for(var i=0;i<containers.length;i++){
+        containers[i].Id=containers[i].Id.slice(0,12);
+        containers[i].Created=others.getLocalTime(containers[i].Created);//BUG
+        containers[i].state={
+            'stop'     :   (containers[i].Status.indexOf("Exited")!=-1),
+            'paused'   :   (containers[i].Status.indexOf("Paused")!=-1),
+        }
+    }
+    return containers;
+};

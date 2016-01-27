@@ -5,7 +5,7 @@
     </a>
     <ul class="dropdown-menu more-ul">
         <li ><a class="more-select" ng-click="send('start',container.Id)" ng-if="container.state.stop">Start</a></li>
-        <li ><a class="more-select" ng-click="send('restart',container.Id)" ng-if="container.state.stop||container.state.paused">Restart</a></li>
+        <li ><a class="more-select" ng-click="send('restart',container.Id)" ng-if="container.state.stop||!container.state.paused">Restart</a></li>
         <li ><a class="more-select" ng-click="send('stop',container.Id)" ng-if="!container.state.stop">Stop</a></li>
         <li ><a class="more-select" ng-click="send('pause',container.Id)" ng-if="!container.state.paused">Pause</a></li>
         <li ><a class="more-select" ng-click="send('unpause',container.Id)" ng-if="container.state.paused">Unpause</a></li>

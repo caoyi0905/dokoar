@@ -1,5 +1,5 @@
 var render=require('../views.js');
-var containers=require('../models/containers.js');
+var container=require('../models/setcontainer.js');
 
 exports.get = function *(){
     this.body = yield render('containers',{
@@ -8,5 +8,5 @@ exports.get = function *(){
 }
 
 exports.post = function *() {
-    this.body = yield containers.stat();
+    this.body = yield container.all();
 }

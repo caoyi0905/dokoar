@@ -1,0 +1,13 @@
+<div id="myModal" class="modal hide fade" style="top: 40%;">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()">x</button>
+        <h3 id="myModalLabel">{% raw %}{{msgTitle}}{% endraw %}</h3>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to destroy this Container?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="send('destroy',curContainerId)">Remove</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+</div>

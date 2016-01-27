@@ -38,7 +38,18 @@ th,td{
 table{
     margin-bottom: 25%;
 }
-/*for nav_bar*/
+.containerId{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    color:#333333;
+}
+.containerId:hover{
+    color:black;
+    text-decoration: none;
+}
+
+/*for navBar*/
 .nav_bar a{
     font-size:18px;color:#666;
 }
@@ -128,4 +139,27 @@ table{
 }
 .more-remove:hover{
     color:red !important;
+}
+
+
+/*for createvm html*/
+label{
+    font-weight: 700;
+    padding-bottom: 1%;
+}
+.input-line{
+    margin-bottom: 1%;
+}
+.devide-bottom{
+    padding-bottom: 1%;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+/*for contianer info*/
+.padding-top{
+    padding-top: 1%;
+}
+.Infotext{
+    font-family: Consolas;
+    font-size  : 14px;
 }

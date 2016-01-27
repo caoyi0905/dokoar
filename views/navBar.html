@@ -1,12 +1,4 @@
-{% if title=='Index'%}
-    <nav class="container">
-{% elseif title=='Containers'%}
-    <nav class="container" ng-controller="containerCtrl">
-{% elseif title=='Images'%}
-    <nav class="container" ng-controller="imageCtrl">
-{% elseif title=='Cmder'%}
-    <nav class="container">
-{% endif %}
+<nav class="container">
     <ul class="nav nav-pills nav_bar_ul">
         <li>
             <img class="brand docker-img" src="/img/dokoar.jpg" href="#">
@@ -17,7 +9,7 @@
         <li class="nav_bar {% if title=='Cmder'%}active{% endif %}"><a href="/cmd">Cmder</a></li>
     </ul>
     {%if title=='Containers' %}
-    <a class="create-btn">Create Container</a>
+    <a class="create-btn" href="/createcontainer">Create Container</a>
     {%elseif title=='Images' %}
     <a class="create-btn" data-toggle="modal" href="#createImage">Create Image</a>
     <div id="createImage" class="modal hide fade" style="top: 40%;">

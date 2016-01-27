@@ -1,8 +1,8 @@
 {% include "./header.html" %}
-{% include "./nav_bar.html" %}
-<div class="container" ng-controller="imageCtrl">
+{% include "./navBar.html" %}
+<div class="container">
     <div>
-        {% include "./content_heading.html" %}
+        {% include "./contentHeading.html" %}
         <table class="table">
             <thead>
                 <tr>
@@ -74,12 +74,12 @@
             $scope.send=function (opt,Id){
                 if(opt=='remove'){
                     $('#myModal').modal('hide');
-                    $http.post('/setimages/',{opt:opt,name:Id});
+                    $http.post('/setimage/',{opt:opt,name:Id});
                     func();
                 }
                 else if(opt=='create'){
                     $('#createImage').modal('hide');
-                    $http.post('/setimages/',{opt:opt,name:Id})
+                    $http.post('/setimage/',{opt:opt,name:Id})
                             .success(function (data,status,headers,config) {
                                 func();
                             })

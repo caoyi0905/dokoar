@@ -16,7 +16,8 @@ app.use(logger());
 app.use(bodyparser());
 app.use(gzip());
 app.use(router(app, {
-    root: './routers'
+    root    : './routers',
+    wildcard: '_'
 }));
 
 app.listen(3000);
