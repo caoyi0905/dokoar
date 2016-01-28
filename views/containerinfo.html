@@ -79,18 +79,21 @@
             <div class="span4 padding-top">
                 <h4 class="devide-bottom">Environment</h4>
                 {%for Env in dk.Config.Env%}
-                <p>{{Env}}</p>
+                <p class="Infotext">{{Env}}</p>
                 {%endfor%}
             </div>
         </div>
         <div class="row-fluid">
             <div class="span4 padding-top">
                 <h4 class="devide-bottom">Port Configuration</h4>
+                {%for port in dk.PortsConfig%}
+                <p class="Infotext devide-bottom" style="font-size:14px">{{port}}</p>
+                {%endfor%}
             </div>
             <div class="span4 padding-top">
                 <h4 class="devide-bottom">User Defined Container DNS</h4>
                 {%for dns in dk.HostConfig.Dns%}
-                <p>{{dns}}</p>
+                <p class="Infotext">{{dns}}</p>
                 {%endfor%}
             </div>
         </div>
