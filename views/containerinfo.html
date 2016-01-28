@@ -27,7 +27,7 @@
             <button class="btn" type="button" ng-click="send('unpause','{{dk.Id}}')">Unpause</button>
             {% endif %}
             <button class="btn btn-inverse" type="button" ng-click="console('{{dk.Id}}')">Console</button>
-            <button class="btn btn-danger" type="button" ng-click="removeMsg('{{dk.Id}}')">Destroy</button>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#myModal" type="button" ng-click="removeMsg('{{dk.Id}}')">Destroy</button>
         </div>
         <div class="row-fluid">
             <div class="span4 padding-top">

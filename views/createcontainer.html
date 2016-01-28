@@ -3,20 +3,148 @@
 <div class="container">
     <!--heading-->
     <div class="text-left" style="padding-bottom: 2%">
-        <h1 class="heading">{{title}}</h1>
+        <h1 class="heading">Create Container</h1>
     </div>
     <!--heading end-->
-    <div style="border: 1px solid #d4d4d5;width: 100%;height: 400px;">
-        <div class="span6">
+    <div style="border: 1px solid #d4d4d5;width: 100%;height: auto;padding:2%">
+        <div class="row-fluid">
             <div class="span6">
-                <label>Image Name</label>
-                <input type="text" class="input" placeholder="Image" ng-model="vm.req.Image">
+                <!--Container Name-->
+                <div class="row-fluid input-line">
+                    <div class="span6">
+                        <h5 class="devide-bottom">Container Name</h5>
+                        <input type="text" class="input span12" placeholder="Container Name" ng-model="ContainerName">
+                    </div>
+                </div>
+                <!--Container Name End-->
+                <!--Image Configuration-->
+                <h5 class="devide-bottom">Image Configuration</h5>
+                <div class="row-fluid input-line">
+                    <div class="span6">
+                        <label>Image Name</label>
+                        <input type="text" class="input span12" placeholder="Image" ng-model="request.Image">
+                    </div>
+                    <div class="span6">
+                        <label>Command</label>
+                        <input type="text" class="input span12" placeholder="Command" ng-model="Cmd">
+                    </div>
+                </div>
+                <div class="row-fluid input-line">
+                    <div class="span6">
+                        <label>Hostname</label>
+                        <input type="text" class="input span12" placeholder="Hostname" ng-model="request.Hostname">
+                    </div>
+                    <div class="span6">
+                        <label>Domain</label>
+                        <input type="text" class="input span12" placeholder="Domain" ng-model="request.Domainname">
+                    </div>
+                </div>
+                <!--Image Configuration End-->
+                <!--Container DNS-->
+                <h5 class="devide-bottom">Container DNS</h5>
+                <div class="row-fluid input-line">
+                    <div class="span8">
+                        <input type="text" class="input span12" placeholder="Container DNS" ng-model="ContainerDns">
+                    </div>
+                    <div class="span2">
+                        <button class="btn btn-success" style="font-size:20px" ng-click="pushDns()">+</button>
+                    </div>
+                </div>
+                <div class="row-fluid input-line" ng-repeat="dns in Dns track by $index">
+                    <div class="span8">
+                        <input type="text" class="input span12" placeholder="Container DNS" ng-model="dns">
+                    </div>
+                    <div class="span2">
+                        <button class="btn btn-danger" style="font-size:20px" ng-click="deleteDns(dns)">x</button>
+                    </div>
+                </div>
+                <!--Container DNS End-->
             </div>
             <div class="span6">
-                <label>Command</label>
-                <input type="text" class="input" placeholder="Command" ng-model="vm.req.cmd">
+                <!--Volumes-->
+                <h5 class="devide-bottom">Volumes</h5>
+                <div class="row-fluid input-line">
+                    <div class="span5">
+                        <input type="text" class="input span12" placeholder="Host Path" ng-model="HostPath">
+                    </div>
+                    <div class="span5">
+                        <input type="text" class="input span12" placeholder="Container Path" ng-model="ContainerPath">
+                    </div>
+                    <div class="span2">
+                        <button class="btn btn-success" style="font-size:20px" ng-click="pushVolume()">+</button>
+                    </div>
+                </div>
+                <div class="row-fluid input-line" ng-repeat="v in Volumes track by $index">
+                    <div class="span5">
+                        <input type="text" class="input span12" placeholder="Host Path" ng-model="v.HostPath">
+                    </div>
+                    <div class="span5">
+                        <input type="text" class="input span12" placeholder="Container Path" ng-model="v.ContainerPath">
+                    </div>
+                    <div class="span2">
+                        <button class="btn btn-danger" style="font-size:20px" ng-click="deleteVolume(v)">x</button>
+                    </div>
+                </div>
+                <!--Volumes End-->
+                <!--Port Configuration-->
+                <h5 class="devide-bottom">Port Configuration</h5>
+                <div class="row-fluid input-line">
+
+                    <input type="checkbox" style="float: left;" ng-model="request.HostConfig.PublishAllPorts">
+                    <label style="font-weight: 400;margin-left: 30px">Expose All Ports</label>
+                </div>
+                <div class="row-fluid">
+                    <label class="min-label span2">Container Port</label>
+                    <label class="min-label span2">Protocol</label>
+                    <label class="min-label span4">Host Listen Address</label>
+                    <label class="min-label span2">Host Port</label>
+                </div>
+                <div class="row-fluid input-line">
+                    <div class="span2">
+                        <input type="text" class="input span12" placeholder="Port" ng-model="ContainerPort">
+                    </div>
+                    <div class="span2">
+                        <select type="text" class="input span12" placeholder="Protocol" ng-model="Protocol">
+                            <option>TCP</option>
+                            <option>UDP</option>
+                        </select>
+                    </div>
+                    <div class="span4">
+                        <input type="text" class="input span12" placeholder="Host Listen Address" ng-model="HostIP">
+                    </div>
+                    <div class="span2">
+                        <input type="text" class="input span12" style="margin-left: 3%" placeholder="Host Port" ng-model="HostPort">
+                    </div>
+                    <div class="span2">
+                        <button class="btn btn-success" style="font-size:20px" ng-click="pushPort()">+</button>
+                    </div>
+                </div>
+                <div class="row-fluid input-line" ng-repeat="port in Ports track by $index">
+                    <div class="span2">
+                        <input type="text" class="input span12" placeholder="Port" ng-model="port.ContainerPort">
+                    </div>
+                    <div class="span2">
+                        <select type="text" class="input span12" placeholder="Protocol" ng-model="port.Protocol">
+                            <option>TCP</option>
+                            <option>UDP</option>
+                        </select>
+                    </div>
+                    <div class="span4">
+                        <input type="text" class="input span12" placeholder="Host Listen Address" ng-model="port.HostIP">
+                    </div>
+                    <div class="span2">
+                        <input type="text" class="input span12" style="margin-left: 3%" placeholder="Host Port" ng-model="port.HostPort">
+                    </div>
+                    <div class="span2">
+                        <button class="btn btn-danger" style="font-size:20px" ng-click="deletePort(port)">x</button>
+                    </div>
+                </div>
+                <!--Port Configuration End-->
             </div>
         </div>
+        <button class="btn btn-large btn-info" style="margin-top: 2%" ng-click="create()">Create</button>
     </div>
 </div>
+<script src="//cdn.bootcss.com/angular.js/1.4.8/angular.min.js"></script>
+<script src="/js/createcontainer.controller.js"></script>
 {% include "./footer.html" %}

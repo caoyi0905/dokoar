@@ -8,12 +8,21 @@ exports.get = function *(){
 }
 
 exports.post = function *() {
-    let opts=this.body.opts;
+    let opts=this.request.body.opts;
     if(!opts){
         //NULL
     }
     else{
-        let containerId=container.createContainer(opts);
-        this.body=render('containers');
+        try{
+            let containerId=yield container.createContainer(opts);
+            this.body=yield {
+                Id:containerId
+            };
+        }
+        catch (err){
+            this.body=yield {
+                err:err
+            };
+        }
     }
 }
