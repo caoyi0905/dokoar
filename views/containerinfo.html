@@ -7,7 +7,7 @@
     {% if dk %}
     <div style="border: 1px solid #d4d4d5;width: 100%;height: 500px;padding:2%">
         <div>
-            <h3>{{dk.Name}}</h3>
+            <h2 style="margin: auto">{{dk.Name}}</h2>
             <p style="font-weight: 600;float:left">Started At</p><p style="margin-left: 6%;">{{dk.startTime}}</p>
         </div>
         <div class="padding-top">
@@ -45,11 +45,11 @@
                 <div class="row-fluid">
                     <div class="span6">
                         <h5>Hostname</h5>
-                        <p class="Infotext">{{dk.Hostname}}</p>
+                        <p class="Infotext">{{dk.Config.Hostname}}</p>
                     </div>
                     <div class="span6">
                         <h5>Domain Name</h5>
-                        <p class="Infotext">{{dk.Domain}}</p>
+                        <p class="Infotext">{{dk.Config.Domainname}}</p>
                     </div>
                 </div>
             </div>
@@ -72,12 +72,15 @@
                     </div>
                     <div class="span6">
                         <h5>Memory</h5>
-                        <p class="Infotext">{{dk.Memory}}</p>
+                        <p class="Infotext">{{dk.HostConfig.Memory}}</p>
                     </div>
                 </div>
             </div>
             <div class="span4 padding-top">
                 <h4 class="devide-bottom">Environment</h4>
+                {%for Env in dk.Config.Env%}
+                <p>{{Env}}</p>
+                {%endfor%}
             </div>
         </div>
         <div class="row-fluid">
@@ -86,6 +89,9 @@
             </div>
             <div class="span4 padding-top">
                 <h4 class="devide-bottom">User Defined Container DNS</h4>
+                {%for dns in dk.HostConfig.Dns%}
+                <p>{{dns}}</p>
+                {%endfor%}
             </div>
         </div>
     </div>

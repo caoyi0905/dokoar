@@ -26,6 +26,9 @@ exports.formatContainerInfo=function (Info){
     Info.State.Paused=(Info.State.Paused==true)?1:0;
     Info.State.Running=(Info.State.Running==true)?1:0;
 
+
+    Info.HostConfig.Memory=Info.HostConfig.Memory/1024/1024+' MB';
+
     console.log(Info)
     return Info;
 }
