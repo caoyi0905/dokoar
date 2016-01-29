@@ -1,9 +1,9 @@
 var cmder=require('../models/cmder.js');
-var render=require('../views.js');
 
 exports.get = function *(){
-    this.body = yield render('cmder',{
-        title:'Cmder'
+    yield this.render('cmder',{
+        title   :   'Cmder',
+        user    :   this.session.user
     });
 }
 

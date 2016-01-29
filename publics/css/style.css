@@ -13,6 +13,36 @@ a{
     width: 75%;
 }
 
+/*for login*/
+.login{
+    background: #f1f1f1;
+}
+.login-div{
+    width: 320px;
+    margin: auto;
+    margin-top: 8%;
+    background: white;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+    box-shadow: 0 1px 3px rgba(0,0,0,.13);
+    padding: 26px 24px 15px;
+}
+.login-label{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 13px;
+}
+.login-input{
+    font-size: 18px !important;
+    height: 40px !important;
+}
+.login-btn{
+    margin:auto;
+    margin-top: 18px;
+    font-size: 16px !important;
+    display: block;
+    padding:10px;
+}
+
 /*for cmd*/
 .text{
     font-family:Consolas;
@@ -187,6 +217,7 @@ label{
     box-shadow: 0 0 0 1px #dbb1b1 inset,0 1px 2px 0 rgba(0,0,0,.05);
     width: 100%;
     height: auto;
-    padding:2%;
+    padding:15px;
+    box-sizing: border-box;
     margin-bottom: 1%;
 }

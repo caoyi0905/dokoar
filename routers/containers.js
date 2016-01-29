@@ -1,9 +1,9 @@
-var render=require('../views.js');
 var container=require('../models/setcontainer.js');
 
 exports.get = function *(){
-    this.body = yield render('containers',{
+    yield this.render('containers',{
         title   :   'Containers',
+        user    :   this.session.user
     });
 }
 

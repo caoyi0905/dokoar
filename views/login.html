@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dokoar Login</title><!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dokoar Login</title>
+        <link href="//cdn.bootcss.com/bootstrap/2.3.1/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="//cdn.bootcss.com/bootstrap/2.3.1/css/bootstrap.css" rel="stylesheet">
+        <link href="/css/style.css" rel="stylesheet" >
+    </head>
+<body class="login">
+<div class="login-div">
+    <img style="margin: 0 auto;display: block;" src='/img/dokoar.jpg'>
+    {% if error %}
+    <div class="error-div">
+        {{error}}
+    </div>
+    {% endif %}
+    <form class="row-fluid" method="post">
+        <label class="login-label">Username</label>
+        <input class="input span12 login-input" type="text" name="username">
+        <label class="login-label">Password</label>
+        <input class="input span12 login-input" type="password" name="password">
+        <input class="btn btn-info login-btn" type="submit" value="Login">
+    </form>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.12.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/2.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

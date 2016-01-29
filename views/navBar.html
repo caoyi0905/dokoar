@@ -8,6 +8,12 @@
         <li class="nav_bar {% if title=='Images'%}active{% endif %}"><a href="/images">Images</a></li>
         <li class="nav_bar {% if title=='Cmder'%}active{% endif %}"><a href="/cmd">Cmder</a></li>
     </ul>
+    <div class="dropdown pull-right" style="text-decoration: underline">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{user}}</a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
     {%if title=='Containers' %}
     <a class="create-btn" href="/createcontainer">Create Container</a>
     {%elseif title=='Images' %}

@@ -1,9 +1,9 @@
-var render=require('../views.js');
 var image=require('../models/setimage.js');
 
 exports.get = function *(){
-    this.body = yield render('images',{
-        title   :   'Images'
+    yield this.render('images',{
+        title   :   'Images',
+        user    :   this.session.user
     });
 }
 

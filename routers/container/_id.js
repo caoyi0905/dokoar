@@ -1,4 +1,3 @@
-var render=require('../../views.js');
 var container=require('../../models/setcontainer.js');
 var others=require('../../models/others.js');
 
@@ -6,16 +5,17 @@ exports.get = function *(id){
     try{
         let containerinfo=yield container.getContainerInfo(id);
         containerinfo=others.formatContainerInfo(containerinfo);
-        this.body = yield render('containerinfo',{
+        yield this.render('containerinfo',{
             title   :   'Container Info',
-            dk      :   containerinfo
+            dk      :   containerinfo,
+            user    :   this.session.user
         });
     }
     catch (error){
-        console.log(error);
-        this.body = yield render('containerinfo',{
+        yield this.render('containerinfo',{
             title   :   'Container Info Error',
-            error   :   error
+            error   :   error,
+            user    :   this.session.user
         });
     }
 

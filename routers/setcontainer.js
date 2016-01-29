@@ -1,4 +1,3 @@
-var render=require('../views.js');
 var api=require('../models/setcontainer.js');
 
 async function success(){

@@ -1,9 +1,9 @@
-var render=require('../views.js');
 var container=require('../models/createcontainer.js');
 
 exports.get = function *(){
-    this.body = yield render('createcontainer',{
+    yield this.render('createcontainer',{
         title   :   'Create Container',
+        user    :   this.session.user
     });
 }
 
@@ -15,7 +15,6 @@ exports.post = function *() {
     else{
         try{
             let containerId=yield container.createContainer(opts);
-            console.log(JSON.stringify(containerId))
             this.body=yield {
                 statusCode  :   200,
                 Id          :   containerId
@@ -23,7 +22,7 @@ exports.post = function *() {
         }
         catch (e){
             console.log("ERR",JSON.stringify(e))
-            this.body=e
+            this.body=e;
         }
     }
 }

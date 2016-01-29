@@ -1,4 +1,3 @@
-var render=require('../views.js');
 var api=require('../models/setimage.js');
 
 async function success(){

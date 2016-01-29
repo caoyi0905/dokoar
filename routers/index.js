@@ -1,13 +1,14 @@
-var render=require('../views.js');
 
 exports.get = function *(){
-    this.body = yield render('index',{
-        title:'Index'
+    yield this.render('index',{
+        title   :   'Index',
+        user    :   this.session.user
     });
 }
 
 exports.post = function *() {
-    this.body = yield render('index',{
-        title:'Index'
+    yield this.render('index',{
+        title   :   'Index',
+        user    :   this.session.user
     });
 }
