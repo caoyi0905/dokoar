@@ -1,0 +1,36 @@
+{% include "./header.html" %}
+{% include "./navBar.html" %}
+<div class="container">
+    {% if error %}
+    <div id="error-div" class="error-div" >
+        <div style="font-weight:600">Error</div>
+        <p>{{error.reason}}</p>
+        <p>{{error.statusCode}}</p>
+        <p>{{error.json}}</p>
+    </div>
+    {% else %}
+    <div style="border: 1px solid #d4d4d5;width: 100%;padding:2%">
+        <h2 style="margin: auto">{{Name}}</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 70%">Log</th>
+                    <th style="width: 10%">Stream</th>
+                    <th style="width: 20%">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for log in logs%}
+                <tr>
+                    <td>{{log.log}}</td>
+                    <td>{{log.stream}}</td>
+                    <td>{{log.time}}</td>
+                </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    {% include "./removeContainer.html" %}
+</div>
+{% include "./footer.html" %}

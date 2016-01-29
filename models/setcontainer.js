@@ -37,7 +37,7 @@ exports.restartContainer=async function (Id) {
 exports.removeContainer=async function (Id)  {
     try {
         let container = docker.getContainer(Id);
-        await container.remove();
+        await container.remove({'force':1});
     } finally {
         console.log('removeContainer: done');
     }

@@ -170,3 +170,23 @@ label{
     font-size  : 13px;
     word-break : break-word;
 }
+
+/*for create-div*/
+.create-div{
+    border: 1px solid #d4d4d5;
+    width: 100%;
+    height: auto;
+    padding:2%;
+    border-radius: .2857rem;
+}
+/*for error-div*/
+.error-div{
+    background-color: #fff0f0;
+    color: #a94442;
+    border-radius: .2857rem;
+    box-shadow: 0 0 0 1px #dbb1b1 inset,0 1px 2px 0 rgba(0,0,0,.05);
+    width: 100%;
+    height: auto;
+    padding:2%;
+    margin-bottom: 1%;
+}

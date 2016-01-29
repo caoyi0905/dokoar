@@ -6,15 +6,8 @@ var container=require('./setcontainer.js');
 
 exports.createContainer=async function (opts) {
     let containerId;
-    try {
-        containerId=await docker.createContainer(opts);
-        return containerId.$subject.id;
-    }
-    catch (e){
-        throw e;
-    }
-    finally{
-        await container.restartContainer(containerId.$subject.id);
-        console.log("Create Container Done...");
-    }
+    containerId=await docker.createContainer(opts);
+    await container.restartContainer(containerId.$subject.id);
+    console.log("Create Container Done...");
+    return containerId.$subject.id;
 };

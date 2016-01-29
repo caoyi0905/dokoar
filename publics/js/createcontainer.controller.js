@@ -101,6 +101,8 @@
         }
 
         $scope.create=function (){
+            $("#error-div").hide();
+
             if($scope.Cmd.length>0){
                 $scope.request.Cmd=$scope.Cmd.split(' ');
             }
@@ -109,15 +111,18 @@
             $scope.transformPorts();
             $scope.request.name=$scope.ContainerName;
 
-            console.log("!!",$scope.request)
             $http
                 .post('/createcontainer', {opts:$scope.request})
                 .success(function(data, status, headers, config) {
-                    if(status >= 400) {
-                        //TODO ERROR
+                    console.log(JSON.stringify(data));
+                    if(data.statusCode !=200) {
+                        $scope.error_reason='Reason: '+data.reason;
+                        $scope.error_statusCode='StatusCode: '+data.statusCode;
+                        $scope.error_json='Json: '+data.json;
+                        $("#error-div").show();
                         return;
                     }
-                    window.location.href=data.id;
+                    window.location.href='/container/'+data.Id;
                 })
                 .error(function(data, status, headers, config) {
                     //TODO

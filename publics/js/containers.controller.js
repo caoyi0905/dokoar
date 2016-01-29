@@ -46,7 +46,7 @@
         }
 
         $scope.removeMsg = function (Id) {
-            $scope.msgTitle = 'Remove Image : ' + Id;
+            $scope.msgTitle = 'Destroy Container: ' + Id;
             $scope.curContainerId = Id;
         }
 

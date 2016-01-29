@@ -6,7 +6,15 @@
         <h1 class="heading">Create Container</h1>
     </div>
     <!--heading end-->
-    <div style="border: 1px solid #d4d4d5;width: 100%;height: auto;padding:2%">
+    <!--error-->
+    <div id="error-div" class="error-div hide" >
+        <div style="font-weight:600">Error</div>
+        <p ng-bind="error_reason"></p>
+        <p ng-bind="error_statusCode"></p>
+        <p ng-bind="error_json"></p>
+    </div>
+    <!--error end-->
+    <div class="create-div">
         <div class="row-fluid">
             <div class="span6">
                 <!--Container Name-->

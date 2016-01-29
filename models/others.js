@@ -9,6 +9,17 @@ exports.getVirtualSize=function (num) {
     return num.toFixed(2)+'MB';
 }
 
+exports.getLogs=function *(filePath){
+    let fs= require('co-fs');
+    let Content=yield fs.readFile(filePath+'','utf8');
+    Content=Content.split('\n');
+    for(var i=0;i<Content.length;i++)if(Content[i].length>0){
+        Content[i]=JSON.parse(Content[i]);
+        Content[i].time=this.getLocalTime(Content[i].time)
+    }
+    return Content;
+}
+
 exports.formatContainerInfo=function (Info){
     Info.Id=Info.Id.slice(0,12);
 

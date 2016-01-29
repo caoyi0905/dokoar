@@ -15,14 +15,15 @@ exports.post = function *() {
     else{
         try{
             let containerId=yield container.createContainer(opts);
+            console.log(JSON.stringify(containerId))
             this.body=yield {
-                Id:containerId
+                statusCode  :   200,
+                Id          :   containerId
             };
         }
-        catch (err){
-            this.body=yield {
-                err:err
-            };
+        catch (e){
+            console.log("ERR",JSON.stringify(e))
+            this.body=e
         }
     }
 }

@@ -15,7 +15,7 @@ exports.get = function *(id){
         console.log(error);
         this.body = yield render('containerinfo',{
             title   :   'Container Info Error',
-            error   :   JSON.stringify(error)
+            error   :   error
         });
     }
 

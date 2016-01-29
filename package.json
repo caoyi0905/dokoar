@@ -8,6 +8,7 @@
     "test": "./node_modules/mocha/bin/mocha --require co-mocha"
   },
   "dependencies": {
+    "co-fs": "1.2.0",
     "co-cache": "2.0.1",
     "co-ejs": "1.5.2",
     "co-views": "",
