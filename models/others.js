@@ -56,6 +56,5 @@ exports.formatContainerInfo=function (Info){
 
     }
 
-    console.log(JSON.stringify(Info))
     return Info;
 }

@@ -15,7 +15,7 @@ exports.post =function *() {
         this.body=yield success();
     }else if(opt=="destroy"){
         yield api.removeContainer(Id);
-        this.body=yield success();
+        this.redirect('containers');
     }else if(opt=="start"){
         yield api.startContainer(Id);
         this.body=yield success();

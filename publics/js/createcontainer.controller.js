@@ -105,6 +105,9 @@
 
             if($scope.Cmd.length>0){
                 $scope.request.Cmd=$scope.Cmd.split(' ');
+                if($scope.request.Cmd.find("/bin/bash")!=-1){
+                    $scope.request.Cmd.push("/bin/bash");
+                }
             }
             $scope.transformDns();
             $scope.transformVolumes();
