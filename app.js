@@ -1,13 +1,12 @@
 var koa = require('koa');
 var app = koa();
-var gzip = require('koa-gzip');
 var logger=require('koa-logger');
 var gzip = require('koa-gzip');
 var bodyparser = require('koa-bodyparser');
 var router = require('koa-frouter');
 var path = require('path')
 var staticCache = require('koa-static-cache');
-var render = require('koa-views');
+var render = require('./views.js');
 var session = require('koa-session');
 var flash = require('koa-flash');
 app.use(staticCache(path.join(__dirname, 'publics'), {
