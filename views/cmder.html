@@ -1,35 +1,9 @@
 {% include "./header.html" %}
 {% include "./navBar.html" %}
 <div class="container">
-    <div class="box">
-        <h1 class="text-center" style="margin-bottom: 30px;">cmder</h1>
-        <form ng-submit="send()" >
-           <div class="input-append text-center" style="width: 100%">
-               <input type="text" class="span8" ng-model="cmd" placeholder="cmd">
-               <input type="submit" class="btn btn-primary" value="Send" ng-disabled="!cmd">
-           </div>
-        </form>
-        <div style="width: 47%;margin: auto;margin-right: 26.9%;">
-            <textarea type="text" class="res text" ng-model="res"></textarea>
-        </div>
-    </div>
+    <div id="container-terminal"></div>
 </div>
+<script src="/js/term.js"></script>
 <script src="//cdn.bootcss.com/angular.js/1.4.8/angular.min.js"></script>
-<script>
-    angular.module('myApp',[]).
-        controller('cmdCtrl',['$scope','$http',
-        function($scope,$http){
-            $scope.cmd="";
-            $scope.send=function(){
-                $http.post('/cmd',{cmd:$scope.cmd})
-                        .success(function (data,stat,headers,config) {
-                            $scope.res=data;
-                        })
-                        .error(function (data,status,headers,config){
-                            $scope.res=data;
-                        })
-                $scope.cmd="";
-            }
-        }]);
-</script>
+<script src="/js/container.cmd.js"></script>
 {% include "./footer.html" %}
