@@ -9,13 +9,13 @@
 </head>
 {% if title=='Index'%}
 <body>
-{% elseif title=='Containers' or title=='Container Info' %}
+{% elif title=='Containers' or title=='Container Info' %}
 <body ng-controller="containerCtrl">
-{% elseif title=='Images'%}
+{% elif title=='Images'%}
 <body ng-controller="imageCtrl">
-{% elseif title=='Create Container' %}
+{% elif title=='Create Container' %}
 <body ng-controller="ccontainerCtrl">
-{% elseif title=='Cmder' %}
+{% elif title=='Cmder' %}
 <body ng-controller="cmdCtrl">
 {% else %}
 <body>

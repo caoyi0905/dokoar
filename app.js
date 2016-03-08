@@ -6,7 +6,8 @@ var router = require('koa-frouter');
 var route = require('koa-route');
 var path = require('path')
 var staticCache = require('koa-static-cache');
-var render = require('./views.js');
+let koaNunjucks2 = require('koa-nunjucks2');
+let koaNunjucks2Middleware = koaNunjucks2('views', {autoescape: true});
 var session = require('koa-session');
 var flash = require('koa-flash');
 var websockify = require('koa-websocket');
@@ -22,9 +23,7 @@ app.use(bodyparser());
 app.use(session(app));
 app.use(flash());
 app.use(gzip());
-app.use(render(__dirname + '/views', {
-    map: { html: 'swig' }
-}));
+app.use(koaNunjucks2Middleware);
 app.use(function *(next) {
     var url = this.url;
     if (url != "/login" && !this.session.user) {

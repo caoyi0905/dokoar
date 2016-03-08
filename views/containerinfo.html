@@ -16,16 +16,16 @@
             <p style="font-weight: 600;float:left">Started At</p><p style="margin-left: 6%;">{{dk.startTime}}</p>
         </div>
         <div class="padding-top">
-            {% if !dk.State.Running %}
+            {% if not dk.State.Running %}
             <button class="btn btn-success" type="button" ng-click="send('start','{{dk.Id}}')">Start</button>
             {% endif %}
-            {% if !dk.State.Running or !dk.State.Paused %}
+            {% if not dk.State.Running or not dk.State.Paused %}
             <button class="btn btn-success" type="button" ng-click="send('restart','{{dk.Id}}')">Restart</button>
             {% endif %}
-            {% if dk.State.Running and !dk.State.Paused %}
+            {% if dk.State.Running and not dk.State.Paused %}
             <button class="btn btn-warning" type="button" ng-click="send('stop','{{dk.Id}}')">Stop</button>
             {% endif %}
-            {% if !dk.State.Paused %}
+            {% if not dk.State.Paused %}
             <button class="btn" type="button" ng-click="send('pause','{{dk.Id}}')">Pause</button>
             {% endif %}
             {% if dk.State.Paused %}

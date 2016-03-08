@@ -14,9 +14,9 @@
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
-    {%if title=='Containers' %}
+    {% if title=='Containers' %}
     <a class="create-btn" href="/createcontainer">Create Container</a>
-    {%elseif title=='Images' %}
+    {% elif title=='Images' %}
     <a class="create-btn" data-toggle="modal" href="#createImage">Create Image</a>
     <div id="createImage" class="modal hide fade" style="top: 40%;">
         <div class="modal-header">
